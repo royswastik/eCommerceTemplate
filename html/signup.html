@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Sign up | Shoppingbee</title>
+
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <!-- Custom styles for this template -->
+    <link href="http://getbootstrap.com/examples/sticky-footer/sticky-footer.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="http://getbootstrap.com/assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <style>
+      body{
+        background-color: #0288D1;
+      }
+
+      .box1{
+          background-color: rgba(255, 255, 255, 0.78);
+  box-sizing: border-box;
+  padding: 35px;
+  border-radius: 5px;
+      }
+      .background{
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  margin: 0 auto;
+  display: block;
+  position: absolute;
+  left:0;
+  top:0;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+    -webkit-filter: blur(3px);
+    filter:blur(3px);
+}
+
+.pag li{
+
+  height: 50px;
+  width: 50px;
+}
+      @media (min-width: 694px){
+        .box1{
+          margin-top: 45px;
+          margin-bottom: 75px;
+        }
+      }
+
+      @media (max-width: 694px){
+        .box1{
+          margin-top: 50px;
+          background-color: #FCFCFC;
+        }
+        .background{
+          display: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+     <header>
+
+</header>
+    <!-- Begin page content -->
+
+  
+            <div class="container" style="max-width:none;">
+            <div class="background"></div>
+              <div class="row" style="margin-bottom:0;">
+               
+                  <div class="col-md-8 col-md-offset-2 col-xs-12 box1"> 
+                                  <form method="get" action="#" id="form1">
+
+                                    <label for="uname">Full Name</label>
+                                      <div class="input-group m20">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
+                                        <input type="text" id="uname" name="uname" class="form-control"  placeholder="Swastik Roy" aria-describedby="sizing-addon2">
+                                      </div>
+
+                                      <label for="umob">Phone Number</label>
+                                      <div class="input-group m20">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span></span>
+                                        <input type="text"  onkeypress='return (event.charCode >= 48 && event.charCode <= 57) || (event.keyCode == 8 || event.keyCode == 46)' id="umob" name="umob" class="form-control shadow"  maxlength="10" placeholder="example: 8051005622" aria-describedby="sizing-addon2" pattern=".{10,10}" title="Phone Number must contain exactly 10 digits">
+                                      </div>
+
+                                      <div class="row">
+                                      <div class="col-lg-6 col-xs-12">
+                                      <label for="pass">Password</label>
+                                      <div class="input-group m20">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></span>
+                                        <input type="password" pattern=".{6,30}" id="pass" name="pass" class="form-control shadow"  maxlength="30" placeholder="*********" aria-describedby="sizing-addon2" pattern=".{8,30}" title="Password must be 8 to 30 characters long">
+                                      </div>
+                                      </div>
+
+                                      <div class="col-lg-6 col-xs-12">
+                                      <label for="mail">Email</label>
+                                      <div class="input-group m20">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></span>
+                                        <input type="email" id="mail" name="mail" class="form-control shadow"  maxlength="50" placeholder="example: swastik@beehyv.com" aria-describedby="sizing-addon2" pattern=".{5,50}" title="Email must be 5 to 50 characters long">
+                                      </div>
+                                      </div>
+                                      </div>
+
+                                      <div class="row">
+                                      <div class="col-lg-6 col-xs-12">
+                                   
+                                      
+                                      <label for="employee">Who are you?</label>
+                                      <div class="input-group m20">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
+                                        <select id="employee" name="employee" class="form-control shadow">
+                                          <option value="Owner">Owner</option>
+                                          <option value="CEO">CEO</option>
+                                          <option value="CTO">CTO</option>
+                                          <option value="Product Manager">Product Manager</option>
+                                          <option value="None of the above">None of the above</option>
+                                        </select>
+                                      </div>
+                                      </div>
+
+                                      <div class="col-lg-6 col-xs-12">
+                                      <label for="file">Upload your logo</label>
+                                      <div class="input-group m20">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></span>
+                                        <input type="file" id="file_up"  accept="image/gif, image/jpeg, image/png" class="form-control shadow file" placeholder="Username" aria-describedby="sizing-addon2" style="padding:0; border:none;"  data-show-upload="true" data-show-caption="true" required>
+                                      </div>
+                                      </div>
+                                      </div>
+
+                                      
+                                      <label for="file">Description about your organisation</label>
+                                      <div class="input-group m20">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span></span>
+                                          <textarea class="form-control custom-control shadow" placeholder="Type description here" rows="3" style="resize:none"></textarea>     
+                                          
+                                      </div>
+
+                                      <br>
+                                      <Button class="btn btn-success btn-block" id="sub" type="submit" style="padding:5 30px;">Sign up</Button>
+                                      </form>
+                                      <br>
+                                        <p class="text-center" style="font-size:1em;"><a href="./home.html" style="text-decoration:none;cursor:pointer;">Go back to homepage</a></p>
+                  </div>
+              </div>
+            </div>
+  
+
+    <footer class="footer" style="background-color:#212121;">
+      <div class="container" style="color:#fff;">
+        <p class="text-muted text-center">Shoppingbee | This page is not in working state</p>
+      </div>
+    </footer>
+
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>

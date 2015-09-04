@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Order Status | Shoppingbee</title>
+    <link rel="icon" href="../img/logo_bee.png">
+    <!-- Bootstrap Core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../css/shop-homepage.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="http://maxwells.github.io/assets/bootstrap-tags/css/bootstrap-tags.css" />
+    <link href="../css/animate.css" rel="stylesheet">
+    <link href="../css/main.css" rel="stylesheet">
+    <link href="../css/about.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+<style>
+.caption{
+    height: auto !important;
+}
+body{
+    background: #F7F5EE;
+}
+
+.shop-tracking-status .form-horizontal{
+    margin-bottom:50px
+}
+.shop-tracking-status .order-status{margin-top:150px;position:relative;margin-bottom:150px}
+
+.shop-tracking-status .order-status-timeline{
+    height:12px;
+    border:1px 
+    solid #aaa;
+    border-radius:7px;
+    background:#eee;
+    box-shadow:0px 0px 5px 0px #C2C2C2 inset;
+    }
+.shop-tracking-status .order-status-timeline .order-status-timeline-completion{
+    height:8px;
+    margin:1px;
+    border-radius:7px;
+    background:#cf7400;
+    width:0px
+}
+.shop-tracking-status .order-status-timeline .order-status-timeline-completion.c1{
+    width:22%
+}
+.shop-tracking-status .order-status-timeline .order-status-timeline-completion.c2{
+    width:46%
+}
+.shop-tracking-status .order-status-timeline .order-status-timeline-completion.c3{
+    width:70%
+}
+.shop-tracking-status .order-status-timeline .order-status-timeline-completion.c4{
+    width:100%
+}
+.shop-tracking-status .image-order-status{
+    border:1px solid #ddd;
+    padding:7px;
+    box-shadow:0px 0px 10px 0px #999;
+    background-color:#fdfdfd;
+    position:absolute;
+    margin-top:-35px
+    }
+.shop-tracking-status .image-order-status.disabled{filter:url();filter:grayscale(100%);-webkit-filter:grayscale(100%);-moz-filter:grayscale(100%);-ms-filter:grayscale(100%);-o-filter:grayscale(100%);filter:gray;}
+.shop-tracking-status .image-order-status.active{box-shadow:0px 0px 10px 0px #cf7400}.shop-tracking-status .image-order-status.active .status{color:#cf7400;text-shadow:0px 0px 1px #777}
+.shop-tracking-status .image-order-status .icon{height:40px;width:40px;background-size:contain;background-position:no-repeat}
+.shop-tracking-status .image-order-status .status{position:absolute;text-shadow:1px 1px #eee;color:#333;transform:rotate(-30deg);-webkit-transform:rotate(-30deg);width:180px;top:-50px;left:50px}.shop-tracking-status .image-order-status .status:before{font-family:FontAwesome;content:"\f053";padding-right:5px}
+.shop-tracking-status .image-order-status-new{left:0}.shop-tracking-status .image-order-status-new .icon{background-image: url();}
+.shop-tracking-status .image-order-status-active{left:22%}.shop-tracking-status .image-order-status-active .icon{background-image: url();}
+.shop-tracking-status .image-order-status-intransit{left:45%}.shop-tracking-status .image-order-status-intransit .icon{background-image: url();}
+.shop-tracking-status .image-order-status-delivered{left:70%}.shop-tracking-status .image-order-status-delivered .icon{background-image: url();}
+.shop-tracking-status .image-order-status-delivered .status{top:85px;left:-180px;transform:rotate(-30deg);-webkit-transform:rotate(-30deg);text-align:right}.shop-tracking-status .image-order-status-delivered .status:before{display:none}
+.shop-tracking-status .image-order-status-delivered .status:after{font-family:FontAwesome;content:"\f054";padding-left:5px;vertical-align:middle}
+.shop-tracking-status .image-order-status-completed{right:0px}.shop-tracking-status .image-order-status-completed .icon{background-image: url();}
+.shop-tracking-status .image-order-status-completed .status{top:85px;left:-180px;transform:rotate(-30deg);-webkit-transform:rotate(-30deg);text-align:right}.shop-tracking-status .image-order-status-completed .status:before{display:none}
+.shop-tracking-status .image-order-status-completed .status:after{font-family:FontAwesome;content:"\f054";padding-left:5px;vertical-align:middle}
+.icon span{
+        font-size: 2.3em;
+    text-indent: 4px;
+    padding-top: 4px;
+}
+</style>
+</head>
+
+<body>
+<header></header>
+    <!-- Page Content -->
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="row well shop-tracking-status">
+                                    <div class="col-xs-12 text-center" style="font-family:Roboto; font-size:3.4em;"><h1 style="margin-bottom:50px;">Track Order</h1></div>
+                                    <div class="col-xs-12">
+                                        <div class="form-horizontal">
+                                            <div class="form-group">
+                                                <label for="inputOrderTrackingID" class="col-sm-2 control-label">Order id</label>
+                                                    <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="inputOrderTrackingID" value="OD45687" placeholder="# put your order id here">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-sm-offset-2 col-sm-10">
+                                                    <button type="button" id="shopGetOrderStatusID" class="btn btn-success">Get status</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                
+                                        <h4>Your order status:</h4>
+
+                                        <ul class="list-group">
+                                            <li class="list-group-item">
+                                                <span class="prefix">Date created:</span>
+                                                <span class="label label-success">12.06.2015</span>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <span class="prefix">Last update:</span>
+                                                <span class="label label-success">18.06.2015</span>
+                                            </li>
+                                            <li class="list-group-item">You can find out latest status of your order with the following link:</li>
+                                            <li class="list-group-item"><a href="https://www.bluedart.com/">www.bluedart.com</a></li>
+                                        </ul>
+
+                                        <div class="order-status">
+
+                                            <div class="order-status-timeline">
+                                                <!-- class names: c0 c1 c2 c3 and c4 -->
+                                                <div class="order-status-timeline-completion c3"></div>
+                                            </div>
+
+                                            <div class="image-order-status image-order-status-new active img-circle">
+                                                <span class="status">Accepted</span>
+                                                <div class="icon"><span class="fa fa-thumbs-up" ></span></div>
+                                            </div>
+                                            <div class="image-order-status image-order-status-active active img-circle">
+                                                <span class="status">In progress</span>
+                                                <div class="icon"><span class="fa fa-spinner"></span></div>
+                                            </div>
+                                            <div class="image-order-status image-order-status-intransit active img-circle">
+                                                <span class="status">Shipped</span>
+                                                <div class="icon"><span class="fa fa-ship"></span></div>
+                                            </div>
+                                            <div class="image-order-status image-order-status-delivered active img-circle">
+                                                <span class="status">Delivered</span>
+                                                <div class="icon"><span class="fa fa-archive"></span></div>
+                                            </div>
+                                            <div class="image-order-status image-order-status-completed active img-circle">
+                                                <span class="status">Completed</span>
+                                                <div class="icon"><span class="fa fa-check" style="color:green;"></span></div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                    </div>
+
+                
+
+                </div>
+
+
+               
+
+
+
+        </div>
+
+    </div>
+    <!-- /.container -->
+
+    <footer id="footer"><!--Footer-->
+   
+    </footer><!--/Footer-->
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="../js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../js/bootstrap.min.js"></script>
+      <script src='http://maxwells.github.io/assets/bootstrap-tags/js/bootstrap-tags.js'></script>
+       <script src="../js/main.js"></script>
+
+
+</body>
+
+</html>
