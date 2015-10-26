@@ -64,7 +64,7 @@ public class UserController {
     
     @RequestMapping(value="/logOut")
 	public ModelAndView logOut(HttpServletResponse response,HttpServletRequest request) {
-    	request.getSession(false).invalidate();
+    	request.getSession(true).invalidate();
     	ModelAndView mav = new ModelAndView("forward:/home");
 		return mav;
 	}

@@ -91,9 +91,9 @@
               <div class="row" style="margin-bottom:0;">
                
                   <div class="col-md-4 col-md-offset-4 col-xs-12 box1"> 
-                                  <form class="form-signin">
+                                  <form class="form-signin" id="form-signin">
                                     <h2 class="form-signin-heading text-center"><span><img src="/static/img/logo_bee.png" class="animated hinge" style="height:45px;position:relative;top:-3px;"></span>ShoppingBee</h2>
-                                   <input type="email" id="inputEmail" class="form-control" placeholder="Email address / Username" style="margin-bottom:10px;" required autofocus>
+                                   <input type="text" id="inputEmail" class="form-control" placeholder="Email address / Username" style="margin-bottom:10px;" required autofocus>
                                     <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
                                                
                                     
@@ -104,13 +104,13 @@
                                       </label>
                                     </div>
                                     <div class="alert alert-danger" id="invalid" role="alert" style="display:none;"></div>
-                                    <a class="btn btn-lg btn-primary btn-block" id="sign_btn">Sign in</a>
+                                    <button type="submit" class="btn btn-lg btn-primary btn-block" id="sign_btn">Sign in</button>
                                     <div id="response-message-green" class="response-message" style="width:100%;color:#fff;background:green;text-align: center;padding: 5px 5px;box-shadow: inset 1px 5px 28px -13px #fff;border-radius: 0 0 5px 5px;">Login Successful</div>
                                     <div id="response-message-red" class="response-message" style="width:100%;color:#fff;background:red;text-align: center;padding: 5px 5px;box-shadow: inset 1px 5px 28px -13px #fff;border-radius: 0 0 5px 5px;">Login failed</div>
                                   </form>
                                   <br />
-                                  <p class="text-center">Not registered yet? <a href="./signup" style="text-decoration:none;">Sign up</a></p>
-                                  <p class="text-center" style="font-size:1em;"><a href="./home" style="text-decoration:none;cursor:pointer;">Go back to homepage</a></p>
+                                  <p class="text-center">Not registered yet? <a href="/signup" style="text-decoration:none;">Sign up</a></p>
+                                  <p class="text-center" style="font-size:1em;"><a href="/home" style="text-decoration:none;cursor:pointer;">Go back to homepage</a></p>
 
                   </div>
               </div>
@@ -184,7 +184,8 @@
     	});
     	  
     	  
-          $("#sign_btn").click(function(){
+          $("#form-signin").submit(function(event){
+        	  event.preventDefault();
             var uname = $("#inputEmail").val();
             var pass = $("#inputPassword").val();
             var login_url = "/setLogin";

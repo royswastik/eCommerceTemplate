@@ -38,8 +38,10 @@ public class CartController {
 	private CategoryService categoryService;
 
     @RequestMapping(value="/getCartForUser", method=RequestMethod.POST)
-	public Map<String,Object> getCartForUser(@RequestParam(value="user_id", defaultValue="1") int user_id) {
-		Map<String,Object> shopList = cartService.findAllForUser((long)user_id);
+	public Map<String,Object> getCartForUser(HttpServletRequest request) {
+    	UserDetails user0 = (UserDetails) request.getSession().getAttribute("logged_user");
+    	long user_id = (long)user0.getUser_id();
+    	Map<String,Object> shopList = cartService.findAllForUser((long)user_id);
 		return shopList;
 	}
     
