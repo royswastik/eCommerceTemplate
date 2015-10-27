@@ -11,10 +11,10 @@ $(document).ready(function(){
 	            	delete filters[filter_type][filter_value];
 	            	console.log(filters);
 	            	load_filters();
-	            	location.replace("./catalog.html?category="+category+"&filters="+encodeURIComponent(JSON.stringify(filters)));
+	            	location.replace("./catalog?category="+category+"&filters="+encodeURIComponent(JSON.stringify(filters)));
 	            }else if(tag.split("_")[0]== "sort"){
 	            	delete filters["sort"];
-	            	location.replace("./catalog.html?category="+category+"&filters="+encodeURIComponent(JSON.stringify(filters)));
+	            	location.replace("./catalog?category="+category+"&filters="+encodeURIComponent(JSON.stringify(filters)));
 	            }
             },
             afterAddingTag:function(tag){ console.log(tag);
@@ -75,13 +75,35 @@ function getUrlVars() {
     });
     return vars;
 }
+var category = getUrlVars()["category"];
+var items_catalog = items_all;
 
-
+function loadItemsFromServer(category){
+	$.ajax({
+	    type: "POST",
+	    url: category+"All",
+	    dataType: "json",
+	    success: function(response) {
+	    	console.log(response);
+	    	items_catalog = response;
+	    	$("#catalog_products").html('<div class="col-xs-12 text-center" style="padding-top:50px;"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate" style="color:#000; font-size:1.3em;"></span></div>');
+        	setTimeout(append_data(items_catalog), 500);
+	    },
+	    error: function(request, status, error){
+	    	console.log(error);
+	    	items_catalog = items_all;
+	    	$("#catalog_products").html('<div class="col-xs-12 text-center" style="padding-top:50px;"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate" style="color:#000; font-size:1.3em;"></span></div>');
+        	setTimeout(append_data(items_catalog), 500);
+	    }
+	});
+}
+loadItemsFromServer(category);
 function loadcategory_items(category){
 	var item_temp = {};
-	for(var item in items_all){
+	
+/*	for(var item in items_all){
 		if(items_all[item]["category"] == category)item_temp[item] = items_all[item];
-	}
+	}*/
 	if(category == "clothing"){
 		items_clothing = item_temp;
 	}
@@ -104,8 +126,6 @@ function loadcategory_items(category){
 
 
 
-var category = getUrlVars()["category"];
-var items_catalog = items_all;
 
 var filter_url = getUrlVars()["filters"];
 loadcategory_items(category);
@@ -119,16 +139,16 @@ catch(e){
 }
 
 if(category == "sports"){
-	items_catalog = items_sports;
+/*	items_catalog = items_sports;*/
 	filter_items = filter_items_sports;
-		$("#catalog_products").html('<div class="col-xs-12 text-center" style="padding-top:50px;"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate" style="color:#000; font-size:1.3em;"></span></div>');
-	            	setTimeout(append_data(items_catalog), 500);
+	/*	$("#catalog_products").html('<div class="col-xs-12 text-center" style="padding-top:50px;"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate" style="color:#000; font-size:1.3em;"></span></div>');
+	            	setTimeout(append_data(items_catalog), 500);*/
 }
 else if(category == "books"){
-	items_catalog = items_books;
+/*	items_catalog = items_books;*/
 	filter_items = filter_items_books;
-		            	$("#catalog_products").html('<div class="col-xs-12 text-center" style="padding-top:50px;"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate" style="color:#000; font-size:1.3em;"></span></div>');
-	            	setTimeout(append_data(items_catalog), 500);
+		/*            	$("#catalog_products").html('<div class="col-xs-12 text-center" style="padding-top:50px;"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate" style="color:#000; font-size:1.3em;"></span></div>');
+	            	setTimeout(append_data(items_catalog), 500);*/
 }
 else if(category == "clothing"){
 	items_catalog = items_clothing;
@@ -137,10 +157,10 @@ else if(category == "clothing"){
 	            	setTimeout(append_data(items_catalog), 500);
 }
 else if(category == "electronics"){
-	items_catalog = items_mobile;
+/*	items_catalog = items_mobile;*/
 	filter_items = filter_items_mobile;
-		            	$("#catalog_products").html('<div class="col-xs-12 text-center" style="padding-top:50px;"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate" style="color:#000; font-size:1.3em;"></span></div>');
-	            	setTimeout(append_data(items_catalog), 500);
+		        /*    	$("#catalog_products").html('<div class="col-xs-12 text-center" style="padding-top:50px;"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate" style="color:#000; font-size:1.3em;"></span></div>');
+	            	setTimeout(append_data(items_catalog), 500);*/
 }
 else if(category == "music"){
 	items_catalog = items_music;
@@ -254,7 +274,7 @@ function append_data(items){
 					"category": category 
 				}
 				var producturl = encodeURIComponent(JSON.stringify(product_obj));
-				location.assign("./product-details.html?product="+producturl);
+				location.assign("/product/"+category+"/"+item_Id+"");
 			});
 }
 
@@ -328,7 +348,7 @@ $(".filter_item").click(function(){
 		tags.addTag("filter_"+filter_type+"_"+$(this).val());
 		$("#catalog_products").html('<div class="col-xs-12 text-center" style="padding-top:50px;"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate" style="color:#000; font-size:1.3em;"></span></div>');
 	            	setTimeout(function(){
-	            		location.replace("./catalog.html?category="+category+"&filters="+encodeURIComponent(JSON.stringify(filters)));
+	            		location.replace("./catalog?category="+category+"&filters="+encodeURIComponent(JSON.stringify(filters)));
 	            	}, 500);	
 	}else{
 		
@@ -380,7 +400,7 @@ $(".sort-option").click(function(){
 		else tags.addTag("sort_ph2l");
 		$("#catalog_products").html('<div class="col-xs-12 text-center" style="padding-top:50px;"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate" style="color:#000; font-size:1.3em;"></span></div>');
 	            	setTimeout(function(){
-	            		location.replace("./catalog.html?category="+category+"&filters="+encodeURIComponent(JSON.stringify(filters)));
+	            		location.replace("./catalog?category="+category+"&filters="+encodeURIComponent(JSON.stringify(filters)));
 	            	}, 1000);
 	}
 	else if(sort_option == "Price - Low to High"){
@@ -389,7 +409,7 @@ $(".sort-option").click(function(){
 		else tags.addTag("sort_pl2h");
 	$("#catalog_products").html('<div class="col-xs-12 text-center" style="padding-top:50px;"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate" style="color:#000; font-size:1.3em;"></span></div>');
 	            	setTimeout(function(){
-	            		location.replace("./catalog.html?category="+category+"&filters="+encodeURIComponent(JSON.stringify(filters)));
+	            		location.replace("./catalog?category="+category+"&filters="+encodeURIComponent(JSON.stringify(filters)));
 	            	}, 1000);
 	}
 });
