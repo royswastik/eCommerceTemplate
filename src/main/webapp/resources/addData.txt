@@ -1,0 +1,35 @@
+var formData = {
+		name: "Nexus 5",
+		mrp: 47000,
+		discount: 20,
+		outOfStock: false,
+		rating: 4,
+		reviews: 12,
+		description: "One of the best smartphones",
+		image_url: "",
+		thumbnail: "../img/products/thumbnail/nexus1.png",
+		in_cart: false,
+		brand: "Google",
+		color: "blue",
+		shop: "Other",
+		os: "Windows",
+		ram: 2,
+		internal_storage: 32,
+		search_option: true,
+		category: "electronics"
+	};
+	$.ajax({
+        type: "POST",
+        url: "http://localhost:8080/addElectronic",
+        data: formData,
+        dataType: "json",
+        success: function(response) {
+        	console.log(response);
+        	console.log("Data fetched");
+        	
+        },
+        error: function(request, status, error){
+        	console.log(error);
+        	
+        }
+    });

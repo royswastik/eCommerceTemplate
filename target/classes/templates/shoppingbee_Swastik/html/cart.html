@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Cart | Shoppingbee</title>
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+     <link rel="stylesheet" type="text/css" href="http://maxwells.github.io/assets/bootstrap-tags/css/bootstrap-tags.css" />
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" rel="stylesheet">
+    <link href="/static/css/animate.css" rel="stylesheet">
+    <link href="/static/css/cart.css" rel="stylesheet">
+    <link href="/static/css/main.css" rel="stylesheet">
+	<link href="/static/css/responsive.css" rel="stylesheet">
+	 <script src="/static/js/jquery.js"></script>
+ 	<script src="/static/js/checkLogin.js"></script>
+ <style>
+.tags-input,.tags-input:hover,.tags-input:active{
+    border: none !important;
+    box-shadow: none !important;
+    background: none !important;
+}
+.tag{
+    background-color: #6764AD;
+    cursor: pointer;
+    margin: 2px !important;
+        font-size: 11px !important;
+}
+.tag:hover{
+    background-color: #4E4B96;
+}
+
+.margin-bottom-0{
+    margin-bottom: 0;
+}
+.stylish-input-group .input-group-addon{
+    background: white !important; 
+}
+.stylish-input-group .form-control{
+    border-right:0; 
+    box-shadow:0 0 0; 
+    border-color:#ccc;
+}
+.stylish-input-group button{
+    border:0;
+    background:transparent;
+}
+.menu-bar > a{
+    color: #6C6C6C !important;
+    padding: 7px 15px !important;
+    font-size: 0.9em !important;
+}
+.menu-bar > a:hover{
+    color: #000 !important;
+}
+
+.signing > a{
+    padding: 3px 5px 0 5px !important;
+    font-size: 0.9em;
+}
+
+</style>
+<script>
+<%
+boolean logged;	
+String log_name="";
+HttpSession session1 = request.getSession(false);
+if(session1.getAttribute("name") == null){logged = false;}
+else {
+	logged = true;
+	log_name = session1.getAttribute("name").toString();
+	}
+%>
+<%
+if(logged){
+	%>
+	var logged = true;
+	var log_name = "<%=log_name%>";
+	<%
+}else{
+%>
+	var logged = false;
+	var log_name = "";
+<%
+}
+%>
+</script>
+</head>
+
+<body>
+	<header></header>
+
+	<section id="cart_items">
+		<div class="container">
+			<div class="breadcrumbs">
+				<ol class="breadcrumb">
+				  <li><a href="#">Home</a></li>
+				  <li class="active">Shopping Cart</li>
+				</ol>
+			</div>
+			<div class="table-responsive cart_info">
+				<table class="table table-condensed">
+					<thead>
+						<tr class="cart_menu">
+							<td class="image hidden-xs">Item</td>
+							<td class="description"></td>
+							<td class="price">Price</td>
+							<td class="quantity">Quantity</td>
+							<td class="total">Total</td>
+							<td></td>
+						</tr>
+					</thead>
+					<tbody id="shopcart">
+						
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section> <!--/#cart_items-->
+
+	<section id="do_action">
+		<div class="container">
+			<div class="heading">
+				<h3>What would you like to do next?</h3>
+				<p>Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.</p>
+			</div>
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="chose_area">
+						<ul class="user_option">
+							<li>
+								<input type="checkbox">
+								<label>Use Coupon Code</label>
+							</li>
+							<li>
+								<input type="checkbox">
+								<label>Use Gift Voucher</label>
+							</li>
+							<li>
+								<input type="checkbox">
+								<label>Estimate Shipping & Taxes</label>
+							</li>
+						</ul>
+						<ul class="user_info">
+							<li class="single_field">
+								<label>Country:</label>
+								<select>
+									<option>United States</option>
+									<option>Bangladesh</option>
+									<option>UK</option>
+									<option>India</option>
+									<option>Pakistan</option>
+									<option>Ucrane</option>
+									<option>Canada</option>
+									<option>Dubai</option>
+								</select>
+								
+							</li>
+							<li class="single_field zip-field">
+								<label>Zip Code:</label>
+								<input type="text">
+							</li>
+						</ul>
+						<a class="btn btn-default update" ></a>
+							<a class="btn btn-default check_out" onclick="alert('Failed to connect to the server. Try again later');">Get Quotes</a>
+						<a class="btn btn-default check_out" href="">Continue</a>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="total_area">
+						<ul>
+							<li id="cart_sub_total">Cart Sub Total &#8377;<span>59</span></li>
+							<li id="cart_tax">Tax &#8377;<span>2</span></li>
+							<li id="cart_shipping">Shipping Cost <span>Free</span></li>
+							<li id="cart_total">Total &#8377;<span>61</span></li>
+						</ul>
+							<a class="btn btn-default update" href="./catalog.html">Continue Shopping</a>
+							<a class="btn btn-default check_out" onclick="alert('Payment System is not added. Please try again later');">Proceed to Checkout</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section><!--/#do_action-->
+
+	<footer id="footer"><!--Footer-->
+		
+		
+	</footer><!--/Footer-->
+	
+	<link rel="import" href="footer.html">
+
+      <!-- jQuery -->
+
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/js.cookie.js"></script>
+    <script src="/static/js/main.js"></script>
+    <script src="/static/js/cart.js"></script>
+
+</body>
+</html>
